@@ -14,7 +14,7 @@ class Navbar extends React.Component {
     <nav id='nav' className="sticky bg-amber-400 h-54 py-4 px-6 shadow-lg flex justify-between items-center text-white">
       <div className="font-bold text-xl">
         <NavLink to="/">
-          Samosa Delivery
+          Samosa Delight
         </NavLink>
       </div>
       <ul className="flex items-center text-lg">

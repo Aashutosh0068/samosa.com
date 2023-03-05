@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="w-full md:w-1/4 md:mr-4 lg:mr-4 lg:w-1/4 mb-8">
             <h2 className="font-bold text-lg mb-4">About Us</h2>
             <p className="text-white leading-loose">
-              We are a samosa delivery service that delivers freshly made, hot and crispy samosas straight to your door.
+              We are a Samosa Delight service that delivers freshly made, hot and crispy samosas straight to your door.
             </p>
           </div>
           <div className="w-full md:w-1/4 md:-mr-4 lg:w-1/4 lg:-mr-4 mb-8">
@@ -52,7 +52,7 @@ const Footer = () => {
       </div>
       <div className="bg-white py-4">
         <div className="container mx-auto px-4">
-          <p className="text-center text-gray-600 text-sm">&copy; 2023 Samosa Delivery. All rights reserved.</p>
+          <p className="text-center text-gray-600 text-sm">&copy; 2023 Samosa Delight. All rights reserved.</p>
         </div>
       </div>
       </footer>
