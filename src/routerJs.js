@@ -12,7 +12,7 @@ function RouteJs() {
       <Routes>
         <Route path="*" element={<Loading/>} />
         <Route path="/" loader={<Loading/>} element={<Layout/>}>
-          <Route path="/" element={<Home/>}/>
+          <Route index element={<Home/>}/>
           <Route path="menu" element={<Menu/>}/>
         </Route>
         <Route path="login" element={<Login/>}/>
