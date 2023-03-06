@@ -12,12 +12,12 @@ class Navbar extends React.Component {
   return (
     <>
     <nav id='nav' className="sticky bg-amber-400 h-54 py-4 px-6 shadow-lg flex justify-between items-center text-white">
-      <div className="font-bold text-xl">
-        <NavLink to="/">
+      <div className="home font-bold text-xl">
+        <NavLink to="/" className="p-2 px-3">
           Samosa Delight
         </NavLink>
       </div>
-      <ul className="flex items-center text-lg">
+      <ul className="flex items-center font-semibold text-lg">
         <li className="mx-2">
           <NavLink to="/menu" className="hover:border-white border pr-2 border-transparent inline-flex rounded p-1 px-1.5 hover:border">
             <BiFoodMenu className='mt-1.5 mr-1.5 text-xl'/>
