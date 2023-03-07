@@ -1,11 +1,16 @@
-import React, { useEffect } from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 const Menu = () => {
+ 
+  const [data, setData] = useState([])
+
   useEffect(() => {
-    fetch('/samosas/')
-      .then(response => response)
-      .catch((err) => { window.alert(err) })
-  })
+    const res = axios.get('/samosas/')
+    const detax = JSON.parse(JSON.stringify(res))
+    setData(detax)
+    console.log(detax)
+  },[data])
 
   return (
     <div>Menu</div>
