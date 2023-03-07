@@ -2,9 +2,8 @@ import React, { useEffect } from 'react'
 
 const Menu = () => {
   useEffect(() => {
-    fetch('http/localhost:8080/samosas/')
-      .then(response => response.json())
-      .then(json => window.alert(json))
+    fetch('/samosas/')
+      .then(response => response)
       .catch((err) => { window.alert(err) })
   })
 
