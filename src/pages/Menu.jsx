@@ -6,14 +6,12 @@ const Menu = () => {
   const [data, setData] = useState([])
 
   useEffect(() => {
-    const res = axios.get('/samosas/')
-    const detax = JSON.parse(JSON.stringify(res))
-    setData(detax)
-    console.log(detax)
+    axios.get('http://localhost:5000/samosas/')
+    .catch(err => window.alert(err))
   },[data])
 
   return (
-    <div>Menu</div>
+    <div>Meu</div>
   )
 }
 

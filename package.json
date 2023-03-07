@@ -1,8 +1,8 @@
 {
   "name": "samosa",
   "version": "0.1.0",
+  "proxy":"https://07eb-34-168-43-17.ngrok.io",
   "private": true,
-  "proxy": "http://localhost:3001/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -53,6 +53,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/samosa68/samosa/issues"
-  },
-  "homepage": "https://github.com/samosa68/samosa#readme"
+  }
 }
