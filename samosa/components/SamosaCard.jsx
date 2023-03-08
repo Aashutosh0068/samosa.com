@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Link from 'next/link';
 import PropTypes from "prop-types";
 import { FaCartPlus } from "react-icons/fa";
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
@@ -6,13 +7,13 @@ import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 function SamosaCard({ samosa, addToCart, rate }) {
   addToCart = (samosa) => {
     let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
-    let existingSamosa = cart.find((samosas) => samosas.id === samosa.id);
+    let existingSamosa = cart.find((samosas) => samosas.id === samosa._id);
 
     if (existingSamosa) {
       existingSamosa.quantity += 1;
     } else {
       const samosa_one = {
-        id: samosa.id,
+        id: samosa._id,
         name: samosa.name,
         description: samosa.description,
         price: samosa.price,
@@ -106,9 +107,12 @@ function SamosaCard({ samosa, addToCart, rate }) {
         />
       </div>
       <div className="p-6">
-        <h3 className="text-lg font-medium text-gray-800 mb-2">
+        <Link href={{
+          pathname: '/samosa/[samosa]',
+          query: {samosa : samosa.slug},
+        }} className="text-lg cursor-pointer font-medium text-gray-800 mb-2">
           {samosa.name}
-        </h3>
+        </Link>
         <p className="text-sm text-gray-500 mb-4">{samosa.description}</p>
         <div className="flex justify-between items-center">
           <div className="inline-flex text-xl justify-between mb-4 ">
@@ -198,6 +202,7 @@ SamosaCard.propTypes = {
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    slug: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     reviews: PropTypes.number.isRequired,
