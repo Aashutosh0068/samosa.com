@@ -92,6 +92,7 @@ class SamosaSlug extends React.Component {
             <div>
                 {
                     this.props.data.map((samosa) => {
+                        {()=>rate(samosa)}
                         return (
                             <section class="text-gray-600 body-font overflow-hidden">
                                 <div class="container px-5 py-24 mx-auto">
