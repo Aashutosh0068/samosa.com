@@ -22,77 +22,11 @@ class SamosaSlug extends React.Component {
  
     
     render() {
-        const rate = (samosa) => {
-        let rating = samosa.rating;
-    
-        if (rating == 1) {
-          document.getElementById(samosa.name + "1f").style = "display:flex";
-          document.getElementById(samosa.name + "2").style = "display:flex";
-          document.getElementById(samosa.name + "3").style = "display:flex";
-          document.getElementById(samosa.name + "4").style = "display:flex";
-          document.getElementById(samosa.name + "5").style = "display:flex";
-        } else if (rating == 2) {
-          document.getElementById(samosa.name + "1f").style = "display:flex";
-          document.getElementById(samosa.name + "2f").style = "display:flex";
-          document.getElementById(samosa.name + "3").style = "display:flex";
-          document.getElementById(samosa.name + "4").style = "display:flex";
-          document.getElementById(samosa.name + "5").style = "display:flex";
-        } else if (rating == 3) {
-          document.getElementById(samosa.name + "1f").style = "display:flex";
-          document.getElementById(samosa.name + "2f").style = "display:flex";
-          document.getElementById(samosa.name + "3f").style = "display:flex";
-          document.getElementById(samosa.name + "4").style = "display:flex";
-          document.getElementById(samosa.name + "5").style = "display:flex";
-        } else if (rating == 4) {
-          document.getElementById(samosa.name + "1f").style = "display:flex";
-          document.getElementById(samosa.name + "2f").style = "display:flex";
-          document.getElementById(samosa.name + "3f").style = "display:flex";
-          document.getElementById(samosa.name + "4f").style = "display:flex";
-          document.getElementById(samosa.name + "5").style = "display:flex";
-        } else if (rating == 5) {
-          document.getElementById(samosa.name + "1f").style = "display:flex";
-          document.getElementById(samosa.name + "2f").style = "display:flex";
-          document.getElementById(samosa.name + "3f").style = "display:flex";
-          document.getElementById(samosa.name + "4f").style = "display:flex";
-          document.getElementById(samosa.name + "5f").style = "display:flex";
-        } else if (rating == 1.5) {
-          document.getElementById(samosa.name + "1f").style = "display:flex";
-          document.getElementById(samosa.name + "2h").style = "display:flex";
-          document.getElementById(samosa.name + "3").style = "display:flex";
-          document.getElementById(samosa.name + "4").style = "display:flex";
-          document.getElementById(samosa.name + "5").style = "display:flex";
-        } else if (rating == 2.5) {
-          document.getElementById(samosa.name + "1f").style = "display:flex";
-          document.getElementById(samosa.name + "2f").style = "display:flex";
-          document.getElementById(samosa.name + "3h").style = "display:flex";
-          document.getElementById(samosa.name + "4").style = "display:flex";
-          document.getElementById(samosa.name + "5").style = "display:flex";
-        } else if (rating == 3.5) {
-          document.getElementById(samosa.name + "1f").style = "display:flex";
-          document.getElementById(samosa.name + "2f").style = "display:flex";
-          document.getElementById(samosa.name + "3f").style = "display:flex";
-          document.getElementById(samosa.name + "4h").style = "display:flex";
-          document.getElementById(samosa.name + "5").style = "display:flex";
-        } else if (rating == 4.5) {
-          document.getElementById(samosa.name + "1f").style = "display:flex";
-          document.getElementById(samosa.name + "2f").style = "display:flex";
-          document.getElementById(samosa.name + "3f").style = "display:flex";
-          document.getElementById(samosa.name + "4f").style = "display:flex";
-          document.getElementById(samosa.name + "5h").style = "display:flex";
-        } else {
-          document.getElementById(samosa.name + "1").style = "display:flex";
-          document.getElementById(samosa.name + "2").style = "display:flex";
-          document.getElementById(samosa.name + "3").style = "display:flex";
-          document.getElementById(samosa.name + "4").style = "display:flex";
-          document.getElementById(samosa.name + "5").style = "display:flex";
-        }
-      };
-
+        
         return (
             <div>
                 {
                     this.props.data.map((samosa) => {
-                        {()=>rate(samosa)}
                         return (
                             <section class="text-gray-600 body-font overflow-hidden">
                                 <div class="container px-5 py-24 mx-auto">
