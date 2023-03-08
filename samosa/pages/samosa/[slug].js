@@ -19,7 +19,10 @@ class SamosaSlug extends React.Component {
         }
 
     }
-    rate = (samosa) => {
+ 
+    
+    render() {
+        const rate = (samosa) => {
         let rating = samosa.rating;
     
         if (rating == 1) {
@@ -84,8 +87,6 @@ class SamosaSlug extends React.Component {
           document.getElementById(samosa.name + "5").style = "display:flex";
         }
       };
-    
-    render() {
 
         return (
             <div>
