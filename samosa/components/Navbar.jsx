@@ -11,7 +11,7 @@ class Navbar extends React.Component {
   render(){
   return (
     <>
-    <nav className="sticky bg-amber-400 h-54 py-4 px-6 shadow-lg flex justify-between items-center text-white">
+    <nav id='nav' className="sticky bg-amber-400 h-54 py-4 px-6 shadow-lg flex justify-between items-center text-white">
       <div className="font-bold text-xl">
         <Link href="/">
           Samosa Delivery

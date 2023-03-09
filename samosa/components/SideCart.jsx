@@ -9,7 +9,7 @@ const SideCart = () => {
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("cartItems")) || [];
     setCartItems(items);
-  }, []);
+  }, [cartItems]);
 
   const handleIncrease = (index) => {
     const newItems = [...cartItems];
@@ -44,11 +44,7 @@ const SideCart = () => {
   useEffect(function handleRefresh() {
     const items = JSON.parse(localStorage.getItem("cartItems")) || [];
     setCartItems(items);
-  });
-  const handleRefresh = () => {
-    const items = JSON.parse(localStorage.getItem("cartItems"));
-    setCartItems(items);
-  };
+  },[cartItems]);
 
   const handleQuantity = (index) => {
     const cartQuantity = cartItems[index].quantity;

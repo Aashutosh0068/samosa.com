@@ -95,7 +95,12 @@ function SamosaCard({ samosa, addToCart, rate }) {
   useEffect(() => rate(samosa));
 
   return (
-    <div className="bg-white rounded-lg shadow-xl w-80 m-6 overflow-hidden hover:opacity-90 hover:bg-slate-100">
+    <Link className="bg-white border h-max rounded-lg shadow-xl w-80 m-6 overflow-hidden hover:opacity-90 hover:bg-slate-100"
+      passHref={true}
+      href={{
+        pathname: '/samosa/[samosa]',
+        query: { samosa: samosa.slug }
+      }}>
       <div
         className="h-48 inset-0 overflow-hidden"
         onClick={() => rate(samosa)}
@@ -107,12 +112,9 @@ function SamosaCard({ samosa, addToCart, rate }) {
         />
       </div>
       <div className="p-6">
-        <Link href={{
-          pathname: '/samosa/[samosa]',
-          query: {samosa : samosa.slug},
-        }} className="text-lg cursor-pointer font-medium text-gray-800 mb-2">
+        <p className="text-lg cursor-pointer font-medium text-gray-800 mb-2">
           {samosa.name}
-        </Link>
+        </p>
         <p className="text-sm text-gray-500 mb-4">{samosa.description}</p>
         <div className="flex justify-between items-center">
           <div className="inline-flex text-xl justify-between mb-4 ">
@@ -177,7 +179,7 @@ function SamosaCard({ samosa, addToCart, rate }) {
         </div>
         <div className="flex items-center justify-between">
           <p className="text-lg font-bold text-gray-800">₹{samosa.price}</p>
-          <button
+          <a
             className="inline-flex justify-center px-2.5 border-2 cursor-pointer focus:outline-none bg-amber-300 py-1.5 rounded-md border-transparent"
             onClick={() => addToCart(samosa)}
           >
@@ -189,10 +191,11 @@ function SamosaCard({ samosa, addToCart, rate }) {
                 <FaCartPlus className="text-xl" />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
-    </div>
+    </Link>
+
   );
 }
 
