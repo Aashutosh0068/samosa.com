@@ -6,7 +6,7 @@ import Head from "next/head";
 
 const App = ({ Component, pageProps }) => {
   return (
-    <main className="overflow-x-hidden">
+    <main className="overflow-x-hidden bg-gray-50">
       <Head><title>Samosa | Pride Of Indian</title></Head>
       <Navbar/>
       <Component {...pageProps} />
