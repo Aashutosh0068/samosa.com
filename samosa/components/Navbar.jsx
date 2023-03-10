@@ -10,8 +10,8 @@ class Navbar extends React.Component {
   }
   render(){
   return (
-    <>
-    <nav id='nav' className="sticky bg-amber-400 h-54 py-4 px-6 shadow-lg flex justify-between items-center text-white">
+    <div id='navbar'>
+    <nav className="sticky bg-amber-400 h-54 py-4 px-6 shadow-lg flex justify-between items-center text-white">
       <div className="font-bold text-xl">
         <Link href="/">
           Samosa Delivery
@@ -45,12 +45,12 @@ class Navbar extends React.Component {
               <RiShoppingCartFill className='text-3xl'/>
         </li>
         <li className="ml-4 text-lg">
-          <Link href="/login" className="border-white pr-3 inline-flex border rounded p-1 px-2 hover:bg-white hover:text-amber-400 text-white">
-            <BiLogIn className='mr-1 mt-1 text-xl'/>Login</Link>
+          <Link href="/auth/signup" className="border-white pr-3 inline-flex border rounded p-1 px-2 hover:bg-white hover:text-amber-400 text-white">
+            <BiLogIn className='mr-1 mt-1 text-xl'/>Signup</Link>
         </li>
       </ul>
     </nav>
-    </>
+    </div>
   )
   }
 }
