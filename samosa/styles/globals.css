@@ -11,3 +11,9 @@
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
     }
+
+.sign-container{
+    background-image: url('/alt.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}

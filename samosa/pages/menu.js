@@ -1,5 +1,5 @@
 import SamosaCard from '@/components/SamosaCard';
-import React ,{ useState,useEffect} from 'react';
+import React from react;
 import Loading from '@/components/Loading';
 import mongoose from 'mongoose';
 import Samosa from '@/models/Samosa';
