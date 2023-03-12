@@ -4,7 +4,7 @@ import cryptoJs from "crypto-js"
 
 export default async function handler(req, res) {
 
-    res.setHeader('Content-Type', 'application/send');
+    res.setHeader('Content-Type', 'application/json');
 
     const FormData = req.body
     var METHOD = req.method
