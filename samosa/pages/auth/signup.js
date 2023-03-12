@@ -1,26 +1,48 @@
 import React, { useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
 
 const SignUp = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleSubmit = () => {
-        fetch('/api/createuser', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email, password })
-        })
-            .then((response) => {
-                setEmail('')
-                setPassword('')
+    const handleSubmit = async () => {
+        try {
+            const res = await fetch('/api/createuser', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            })
+            setEmail('')
+            setPassword('')
+            let statusCode = await res.status
+            
+            if(statusCode === 690){
+                toast.warn("Email address already exists",{
+                    autoClose : 5000,
+                    position : 'top-right',
+                    closeOnClick : false,
+                    closeButton : false,
+                    hideProgressBar : true,
+                    className: "mt-16"
+                })
             }
-            )
-            .catch(
-                err => err
-            )
+            else if(statusCode === 200){
+                toast.success("Foodie account created sucessfully",{
+                    autoClose : 5000,
+                    position : 'top-right',
+                    closeOnClick : false,
+                    closeButton : false,
+                    hideProgressBar : true,
+                    className : "mt-16"
+                })
+            }
+        }
+        catch {
+            err => err
+        }
     }
 
     return (
