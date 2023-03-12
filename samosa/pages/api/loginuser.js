@@ -27,7 +27,7 @@ export default async function handler(req, res) {
                 }
 
             }
-            catch { res.status(800).send({ 'message': err }) }
+            catch { res.status(800).send({ 'message': "err" }) }
         }
         else {
             res.status(500).send({ "message": "invalid body" })
