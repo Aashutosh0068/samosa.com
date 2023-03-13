@@ -8,7 +8,7 @@ export default async function handler(req, res) {
 
     if (METHOD === "POST") {
         if (FormData.email && FormData.password) {
-            if (mongoose.connections[0].readyState) {
+            if (!mongoose.connections[0].readyState) {
                 await mongoose.connect(process.env.MONGO_URI)
             }
             try {
@@ -18,7 +18,7 @@ export default async function handler(req, res) {
                     res.status(690).send({ "message": "invalid email address" })
                 }
                 else {
-                    if (cryptoJs.AES.decrypt(user_Validation.password, process.env.SECRET_KEY).toString() == FormData.password) {
+                    if (cryptoJs.AES.decrypt(user_Validation.password, process.env.SECRET_KEY).toString(cryptoJs.enc.Utf8) == FormData.password) {
                         res.status(200).send({ "message": "authentication sucessfull" })
                     }
                     else {
@@ -27,7 +27,9 @@ export default async function handler(req, res) {
                 }
 
             }
-            catch { res.status(800).send({ 'message': "err" }) }
+            catch {
+                res.status(800).send({ 'message': "err" }) 
+            }
         }
         else {
             res.status(500).send({ "message": "invalid body" })
