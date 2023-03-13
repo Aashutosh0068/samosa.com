@@ -1,5 +1,6 @@
 import userCredentials from "@/models/userCredentials"
 import cryptoJs from "crypto-js"
+import { sign } from "jsonwebtoken"
 import mongoose from "mongoose"
 
 export default async function handler(req, res) {
@@ -19,16 +20,17 @@ export default async function handler(req, res) {
                 }
                 else {
                     if (cryptoJs.AES.decrypt(user_Validation.password, process.env.SECRET_KEY).toString(cryptoJs.enc.Utf8) == FormData.password) {
-                        res.status(200).send({ "message": "authentication sucessfull" })
+                        var token = sign({email : user_Validation.email}, process.env.SECRET_KEY)
+                        res.status(200).send({ token })
                     }
                     else {
-                        res.status(699).send({ "message": "bad credentials" })
+                        res.status(699).send({ "message": "bad credentias seels" })
                     }
                 }
 
             }
             catch {
-                res.status(800).send({ 'message': "err" }) 
+                res.status(800).send({ 'message': "err" })
             }
         }
         else {

@@ -46,7 +46,7 @@ const Login = () => {
                 )
             }
             else if (statusCode === 200) {
-                toast.success('Authentication Sucessfull, now enjoy the samosas',
+                toast.success('Authentication Sucessfull, enjoy samosas',
                     {
                         autoClose: 5000,
                         position: 'top-right',
@@ -55,6 +55,9 @@ const Login = () => {
                         hideProgressBar: true,
                         className: "mt-16"
                     })
+                const response = await res.json()
+                
+                localStorage.setItem('token', response.token)
             }
             else {
                 toast.error('Unable to login in your Foodie account, please try again',
