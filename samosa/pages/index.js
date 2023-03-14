@@ -1,7 +1,6 @@
 import Banner from '@/components/Banner'
 import Context from '@/components/context'
-import { getValue } from '@/values/setValues'
-import React, { useEffect } from 'react'
+import React from 'react'
 
 const Homepage = () => {
 
