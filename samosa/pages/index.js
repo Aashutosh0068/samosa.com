@@ -1,8 +1,10 @@
 import Banner from '@/components/Banner'
 import Context from '@/components/context'
-import React from 'react'
+import { getValue } from '@/values/setValues'
+import React, { useEffect } from 'react'
 
 const Homepage = () => {
+
   return (
     <div>
         <Banner/>

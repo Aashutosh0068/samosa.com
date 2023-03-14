@@ -25,5 +25,5 @@ export default function userState() {
         })
     }
 
-    return JSON.stringify(Result);
+    return Result;
 }
