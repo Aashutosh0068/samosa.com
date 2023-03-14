@@ -1,9 +1,9 @@
 const Values = {
-    statusCodes : 'abc'
+    statusCodes : null
 }
 
-export function setValues(userState){
-    Values.statusCodes = 'Bcd'
+export function setValues(messageCode){
+    Values.statusCodes = messageCode
 }
 
 export function getValue(){

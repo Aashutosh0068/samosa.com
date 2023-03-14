@@ -12,8 +12,9 @@ import 'react-toastify/dist/ReactToastify.css';
 const App = ({ Component, pageProps }) => {
 
   useEffect(()=>{
-    setValues(userState())
-    window.alert(getValue())
+    const message = JSON.stringify(userState())
+    setValues()
+    window.alert(message)
   })
 
   return (
