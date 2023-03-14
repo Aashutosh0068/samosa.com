@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = ({ Component, pageProps }) => {
+
   return (
     <main className="overflow-x-hidden bg-gray-50">
       <Head><title>Samosa | Pride Of Indian</title></Head>

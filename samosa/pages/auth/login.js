@@ -5,8 +5,11 @@ const Login = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [processing, setProgress] = useState(null)
 
     const handleSubmit = async () => {
+
+        setProgress(true)
 
         try {
             let res = await fetch('/api/loginuser', {
@@ -74,7 +77,7 @@ const Login = () => {
         }
         catch {
             err => err
-        }
+        }setProgress(null)
     }
 
     return (
@@ -105,7 +108,11 @@ const Login = () => {
                                 </div>
                                 <a href="#" className="text-md font-medium text-indigo-600 cursor-pointer underline dark:text-primary-500">Forgot Password</a>
                             </div>
+                            { processing ?(
+                            <button disabled={true} className="w-full text-white bg-amber-400 text-center py-2.5 px-5 rounded-lg font-medium">Processing....</button>
+                                ):(
                             <button type="submit" className="w-full text-white bg-amber-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-md px-5 py-2.5 text-center">Sign in to foodie Account</button>
+                            )}
                             <p className="text-md font-light text-gray-500">
                                 don't have an account yet? <a href="/auth/signup" className="font-medium cursor-pointer text-indigo-600 underline">Sign up</a>
                             </p>
