@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 import Samosa from '@/models/Samosa';
 
 const Menu =({data})=>{
-
+  
   return (
     <div className="flex flex-wrap bg-gray-50 justify-center mt-6">{
       data ?(
