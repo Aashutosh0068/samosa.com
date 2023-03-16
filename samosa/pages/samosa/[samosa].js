@@ -1,16 +1,19 @@
 import Samosa from "@/models/Samosa"
 import mongoose from "mongoose"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs"
 import { FaCartPlus } from 'react-icons/fa'
 
 function SamosaSlug({ data, rate, addToCart }) {
+
+    const [quantity, setQuantity] = useState(1)
+
     addToCart = (samosa) => {
         let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
         let existingSamosa = cart.find((samosas) => samosas.id === samosa._id);
 
         if (existingSamosa) {
-            existingSamosa.quantity += 1;
+            existingSamosa.quantity += Number(quantity);
         } else {
             const samosa_one = {
                 id: samosa._id,
@@ -20,7 +23,7 @@ function SamosaSlug({ data, rate, addToCart }) {
                 image: samosa.image,
             };
 
-            cart.push({ ...samosa_one, quantity: 1 });
+            cart.push({ ...samosa_one, quantity: Number(quantity) });
         }
 
         localStorage.setItem("cartItems", JSON.stringify(cart));
@@ -194,7 +197,7 @@ function SamosaSlug({ data, rate, addToCart }) {
                                     <div className="flex ml-6 items-center">
                                         <span className="mr-3">Quantity</span>
                                         <div className="relative">
-                                            <select className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-200 focus:border-yellow-500 text-base pl-3 pr-10">
+                                            <select value={quantity} onChange={(e)=> setQuantity(e.target.value)} className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-transparent text-base pl-3 pr-10">
                                                 <option>1</option>
                                                 <option>2</option>
                                                 <option>3</option>

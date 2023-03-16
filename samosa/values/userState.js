@@ -1,7 +1,7 @@
-import secret from '@/secret';
+import { SECRET_KEY } from '@/Keys';
 import { verify } from 'jsonwebtoken';
 
-export default async function userState() {
+export default function userState() {
     const Result = {
         userStatus: null,
         message: null,
@@ -16,7 +16,7 @@ export default async function userState() {
     }
 
     else {
-        verify(token, secret.secret.SECRET_KEY , async (err, decoded) => {
+        verify(token, SECRET_KEY.toString() , (err, decoded) => {
             if (decoded) {
                 Result.email = decoded.email
                 Result.name = decoded.name
