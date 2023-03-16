@@ -17,3 +17,7 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+#dropdown-btn:hover #dropdown {
+    display: block;
+  }

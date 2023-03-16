@@ -1,7 +1,16 @@
-import React, { useState } from 'react'
+import { useRouter } from 'next/router'
+import userState from '@/values/userState'
+import React, { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 
 const Login = () => {
+
+    useEffect(()=>{
+        const message = userState().message
+        if(message === 200){
+            window.location.replace('/auth/userprofile')
+        }
+    },[()=>userState().message])
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -49,6 +58,9 @@ const Login = () => {
                 )
             }
             else if (statusCode === 200) {
+                const response = await res.json();
+                localStorage.setItem('token', response.token)
+                window.location.replace('/auth/userprofile')
                 toast.success('Authentication Sucessfull, enjoy samosas',
                     {
                         autoClose: 5000,
@@ -58,9 +70,6 @@ const Login = () => {
                         hideProgressBar: true,
                         className: "mt-16"
                     })
-                const response = await res.json()
-                
-                localStorage.setItem('token', response.token)
             }
             else {
                 toast.error('Unable to login in your Foodie account, please try again',
@@ -77,7 +86,7 @@ const Login = () => {
         }
         catch {
             err => err
-        }setProgress(null)
+        } setProgress(null)
     }
 
     return (
@@ -108,10 +117,19 @@ const Login = () => {
                                 </div>
                                 <a href="#" className="text-md font-medium text-indigo-600 cursor-pointer underline dark:text-primary-500">Forgot Password</a>
                             </div>
-                            { processing ?(
-                            <button disabled={true} className="w-full text-white bg-amber-400 text-center py-2.5 px-5 rounded-lg font-medium">Processing....</button>
-                                ):(
-                            <button type="submit" className="w-full text-white bg-amber-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-md px-5 py-2.5 text-center">Sign in to foodie Account</button>
+                            {processing ? (
+                                <button disabled={true} className="w-full text-white bg-amber-400 text-center py-2.5 px-5 rounded-lg font-medium">
+                                    <div
+                                        className="inline-block h-5 -mb-0.5 w-5 mr-2 animate-spin rounded-full border-4 border-solid border-white border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                                        role="status">
+                                        <span
+                                            className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+                                        >Loading...</span
+                                        >
+                                    </div>
+                                    Processing....</button>
+                            ) : (
+                                <button type="submit" className="w-full text-white bg-amber-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-md px-5 py-2.5 text-center">Sign in to foodie Account</button>
                             )}
                             <p className="text-md font-light text-gray-500">
                                 don't have an account yet? <a href="/auth/signup" className="font-medium cursor-pointer text-indigo-600 underline">Sign up</a>
