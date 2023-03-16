@@ -13,7 +13,7 @@ const userprofile = () => {
     else {
       setLoading(null)
     }
-  }, [loading, userState().email])
+  }, [loading])
 
   return (
     <>

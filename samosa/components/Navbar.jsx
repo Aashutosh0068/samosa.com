@@ -4,6 +4,7 @@ import { RiShoppingCartFill } from 'react-icons/ri';
 import { BsFillPersonFill, BsFillTelephoneFill, BsHeartFill } from 'react-icons/bs'
 import { BiFoodMenu, BiLogIn, BiLogOut, BiUserCircle } from 'react-icons/bi'
 import userState from '@/values/userState';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
 
@@ -12,11 +13,26 @@ const Navbar = () => {
   }
 
   const [user, setUser] = useState(null)
+  const [userName, setUserName] = useState('User')
 
   useEffect(() => {
-    let message = userState().message
-    if (message === 200) {
+    let message = userState()
+    if (message.message === 200) {
       setUser(true)
+      setUserName(message.name)
+    }
+    else if(message.message === 690){
+      toast.warn('Foodie not found ! session expired login again',
+                    {
+                        autoClose: 5000,
+                        position: 'top-right',
+                        closeOnClick: false,
+                        closeButton: false,
+                        hideProgressBar: true,
+                        className: "mt-16"
+                    })
+      setUser(null)
+      localStorage.removeItem('token')
     }
     else {
       setUser(null)
@@ -64,10 +80,10 @@ const Navbar = () => {
                       <button
                         className="flex peer items-center text-md mt-1 -ml-1 mr-4 text-white transition duration-150 ease-in-out"
                         aria-expanded="false">
-                        <BiUserCircle className='text-2xl mr-1.5' />User
+                        <BiUserCircle className='text-2xl mr-1.5' />{userName.split(' ').slice(0, 1)}
                       </button>
                       <ul
-                        className="absolute hover:block peer-hover:block hidden z-[1000] mt-2 min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-neutral-700">
+                        className="fixed hover:block peer-hover:block hidden z-[1000] mt-2 min-w-max object-contain bg-contain list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-neutral-700">
                         <li>
                           <a
                             className="block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"

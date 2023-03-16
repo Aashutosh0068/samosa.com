@@ -20,11 +20,11 @@ export default async function handler(req, res) {
                 }
                 else {
                     if (cryptoJs.AES.decrypt(user_Validation.password, process.env.SECRET_KEY).toString(cryptoJs.enc.Utf8) == FormData.password) {
-                        var token = sign({email : user_Validation.email}, 'eatpeRepeat69')
+                        var token = sign({email : user_Validation.email, name : user_Validation.name}, process.env.SECRET_KEY,{expiresIn : '7d'})
                         res.status(200).send({ token })
                     }
                     else {
-                        res.status(699).send({ "message": "bad credentias seels" })
+                        res.status(699).send({ "message": "bad credentials" })
                     }
                 }
 

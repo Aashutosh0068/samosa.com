@@ -21,6 +21,7 @@ export default async function handler(req, res) {
 
                 let body = new userCredentials({
                     _id: FormData.email,
+                    name: FormData.name,
                     email: FormData.email,
                     password: cryptoJs.AES.encrypt(FormData.password, process.env.SECRET_KEY),
                     isFoodie: false
