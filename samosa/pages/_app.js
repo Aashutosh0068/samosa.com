@@ -12,7 +12,7 @@ const App = ({ Component, pageProps }) => {
     <div>
           <main className="overflow-x-hidden bg-gray-50">
             <Head><title>Samosa | Pride Of Indian</title></Head>
-            <Navbar />
+            <Navbar className="sticky"/>
             <ToastContainer />
             <Component {...pageProps} />
             <SideCart />

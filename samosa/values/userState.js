@@ -1,6 +1,6 @@
 import { verify } from 'jsonwebtoken'
 
-export default function userState() { window.alert(process.env.SECRET_KEY)
+export default function userState() {
     const Result = {
         userStatus: null,
         message: null,
