@@ -32,6 +32,7 @@ const SideCart = () => {
 
   const handleCheckout = () => {
     // handle checkout logic here
+    window.location.replace('/checkout')
   };
 
   const handleRemove = (index) => {
