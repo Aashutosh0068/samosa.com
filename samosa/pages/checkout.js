@@ -85,7 +85,7 @@ const Checkout = () => {
                   </div>
                 </div>
                 <div className="py-14"><h1 className="text-4xl font-bold font-serif">Your Samosas</h1>
-                <div className="overflow-y-auto mr-2 mb-8 my-6">
+                <div className="overflow-y-auto mr-2 w-3/4 mb-8 my-6">
             {cartItems.map((item, index) => (
               <div
                 className="flex items-center py-3 mb-2 border-b border-gray-300"
