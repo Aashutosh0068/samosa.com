@@ -1,11 +1,5 @@
 {
-    "450331": {
-        "city": "burhanpur"
-    },
-    "200102": {
-        "city": "delhi"
-    },
-    "380112": {
-        "city": "pune"
-    }
+    "450331": ["burhanpur", "madhya pradesh"],
+    "200102": ["delhi", "delhi"],
+    "380112": ["pune", "maharastra"]
 }
