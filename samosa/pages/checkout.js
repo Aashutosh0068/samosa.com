@@ -1,11 +1,13 @@
 import Loading from "@/components/Loading";
 import userState from "@/values/userState";
+import pincode from '@/values/pincode.json'
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const Checkout = () => {
   const [loading, setLoading] = useState(true);
   const [cartItems, setCartItems] = useState([]);
+  const [Payment, setPayment] = useState('');
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -43,6 +45,7 @@ const Checkout = () => {
   const [Email, setEmail] = useState("");
   const [Phone, setPhone] = useState("");
   const [amount, setAmount] = useState("");
+  const [City, setCity] = useState("")
 
   const handleSubmit = async () => {
     setAmount(cartTotal.toFixed(2));
@@ -98,11 +101,69 @@ const Checkout = () => {
                         Samosa Delight
                       </h2>
                     </div>
-                    <div className="flex flex-row text-md pt-6 pb-5">
-                      <span className="font-bold">Information</span>
-                      <mdall className="text-gray-400 ml-1"></mdall>
-                      <span className="text-gray-400 ml-1">Payment</span>
-                    </div>
+                    <h3 class="mb-4 font-semibold mt-4 text-gray-900 dark:text-white">
+                      Payment Method
+                    </h3>
+                    <ul class="items-center w-full mb-5 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                      {/*<li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                        <div class="flex items-center pl-3">
+                          <input
+                            id="horizontal-list-radio-license"
+                            type="radio"
+                            value=""
+                            name="list-radio"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                          />
+                          <label
+                            for="horizontal-list-radio-license"
+                            class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          >
+                            Driver License{" "}
+                          </label>
+                        </div>
+      </li>*/}
+                      <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                        <div class="flex items-center pl-3">
+                          <input
+                          
+                            id="horizontal-list-radio-id"
+                            type="radio"
+                            onChange={(e)=>{
+                              const val = e.target.checked.valueOf
+                              if(val == true){
+                                 setPayment('cash on delivery')
+                              }
+                            }}
+                            name="list-radio"
+                            class="w-4 h-4 text-amber-400 bg-gray-100 border-gray-300 focus:ring-amber-400 dark:focus:ring-amber-400 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                          />
+                          <label
+                            for="horizontal-list-radio-id"
+                            class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          >
+                            Cash on Delivery
+                          </label>
+                        </div>
+                      </li>
+                      <li class="w-full dark:border-gray-600">
+                        <div class="flex items-center pl-3">
+                          <input
+                            id="horizontal-list-radio-passport"
+                            type="radio"
+                            value=""
+                            name="list-radio"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                          />
+                          <label
+                            for="horizontal-list-radio-passport"
+                            class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          >
+                            UPI / Debit Card
+                          </label>
+                        </div>
+                      </li>
+                    </ul>
+
                     <span>Customer Information</span>
                     <div className="relative pb-5">
                       <input
@@ -155,7 +216,14 @@ const Checkout = () => {
                         type="number"
                         maxLength={6}
                         value={Pincode}
-                        onChange={(e) => setPincode(e.target.value)}
+                        onChange={(e) => {
+                          setPincode(e.target.value)
+                          
+                          if(Object.keys(pincode).includes(Pincode.toString())){
+                            const details = pincode[Pincode]
+                            setCity(details.slice(0,1))
+                          }
+                        }}
                         minLength={6}
                         oname="mail"
                         className="border rounded h-10 w-full focus:outline-none  focus:border-amber-400 px-5 mt-5 text-md"
@@ -166,6 +234,7 @@ const Checkout = () => {
                         name="mail"
                         className="border rounded h-10 w-full focus:outline-none  focus:border-amber-400 px-5 mt-5 text-md"
                         readOnly
+                        value={City}
                         placeholder="City"
                       />
                       <input
