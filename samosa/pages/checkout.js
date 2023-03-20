@@ -1,13 +1,13 @@
 import Loading from "@/components/Loading";
 import userState from "@/values/userState";
-import pincode from '@/values/pincode.json'
+import pincode from "@/values/pincode.json";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const Checkout = () => {
   const [loading, setLoading] = useState(true);
   const [cartItems, setCartItems] = useState([]);
-  const [Payment, setPayment] = useState('');
+  const [Payment, setPayment] = useState("");
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -52,15 +52,16 @@ const Checkout = () => {
       const res = await fetch("/api/createorder", {
         method: "POST",
         headers: {
-          Accept: "application/json",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           email: Email,
+          alt_email: userState().email,
           pincode: Pincode,
           phone: Phone,
-          fname: Fname,
+          name: Fname + " " + Lname,
           address: address,
+          payment_type: Payment,
           amount: amount,
           products: JSON.parse(localStorage.getItem("cartItems")).map(
             (value) => {
@@ -76,7 +77,39 @@ const Checkout = () => {
       const statusCode = await res.status;
       const json = await res.json();
 
-      toast(json.message);
+      if (statusCode == 200) {
+        toast.success(json.message, {
+          autoClose: 5000,
+          position: "top-right",
+          closeOnClick: false,
+          closeButton: false,
+          hideProgressBar: true,
+          className: "mt-16",
+        });
+      }
+
+      else if(statusCode == 500){
+        toast.warn(json.message, {
+          autoClose: 5000,
+          position: "top-right",
+          closeOnClick: false,
+          closeButton: false,
+          hideProgressBar: true,
+          className: "mt-16",
+        });
+      }
+
+      else{
+        toast.error(json.message, {
+          autoClose: 5000,
+          position: "top-right",
+          closeOnClick: false,
+          closeButton: false,
+          hideProgressBar: true,
+          className: "mt-16",
+        });
+      }
+
     } catch {
       (err) => err;
     }
@@ -124,14 +157,12 @@ const Checkout = () => {
                       <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                         <div class="flex items-center pl-3">
                           <input
-                          
                             id="horizontal-list-radio-id"
                             type="radio"
-                            onChange={(e)=>{
-                              const val = e.target.checked
-                              if(val == true){
-                                 setPayment('cash on delivery')
-                                 window.alert(Payment)
+                            onChange={(e) => {
+                              const val = e.target.checked;
+                              if (val == true) {
+                                setPayment("cash on delivery");
                               }
                             }}
                             name="list-radio"
@@ -150,7 +181,12 @@ const Checkout = () => {
                           <input
                             id="horizontal-list-radio-passport"
                             type="radio"
-                            value=""
+                            onChange={(e) => {
+                              const val = e.target.checked;
+                              if (val == true) {
+                                setPayment("prepaid Payment");
+                              }
+                            }}
                             name="list-radio"
                             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                           />
@@ -216,8 +252,7 @@ const Checkout = () => {
                         type="number"
                         maxLength={6}
                         value={Pincode}
-                        onChange={(e) => 
-                          setPincode(e.target.value)}
+                        onChange={(e) => setPincode(e.target.value)}
                         minLength={6}
                         oname="mail"
                         className="border rounded h-10 w-2/3 focus:outline-none  focus:border-amber-400 px-5 mt-5 text-md"
@@ -228,8 +263,10 @@ const Checkout = () => {
                         name="mail"
                         className="border rounded h-10 w-3/4 uppercase focus:outline-none  focus:border-amber-400 px-5 mt-5 text-md"
                         readOnly
-                        value={Object.keys(pincode).includes(Pincode) ?(
-                          pincode[Pincode].slice(0,1)):("")
+                        value={
+                          Object.keys(pincode).includes(Pincode)
+                            ? pincode[Pincode].slice(0, 1)
+                            : ""
                         }
                         placeholder="City"
                       />
@@ -239,9 +276,11 @@ const Checkout = () => {
                         className="border rounded h-10 w-full uppercase focus:outline-none  focus:border-amber-400 px-5 mt-5 text-md"
                         readOnly
                         placeholder="State"
-                        value={Object.keys(pincode).includes(Pincode) ?(
-                          pincode[Pincode].slice(1,2)
-                        ):("")}
+                        value={
+                          Object.keys(pincode).includes(Pincode)
+                            ? pincode[Pincode].slice(1, 2)
+                            : ""
+                        }
                       />
                     </div>
                     <input

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import PropTypes from "prop-types";
 import { FaCartPlus } from "react-icons/fa";
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
+import { toast } from "react-toastify";
 
 function SamosaCard({ samosa, addToCart, rate }) {
   addToCart = (samosa) => {
@@ -24,6 +25,14 @@ function SamosaCard({ samosa, addToCart, rate }) {
     }
 
     localStorage.setItem("cartItems", JSON.stringify(cart));
+
+    toast.success((samosa.name + " sucessfully added in your cart").toString(), {
+      autoClose: 500,
+      position: 'top-right',
+      closeOnClick: false,
+      closeButton: false,
+      hideProgressBar: true
+  })
   };
 
   rate = (samosa) => {
@@ -95,12 +104,7 @@ function SamosaCard({ samosa, addToCart, rate }) {
   useEffect(() => rate(samosa));
 
   return (
-    <Link className="bg-white border h-max rounded-lg shadow-xl w-80 m-6 overflow-hidden hover:opacity-90 hover:bg-slate-100"
-      passHref={true}
-      href={{
-        pathname: '/samosa/[samosa]',
-        query: { samosa: samosa.slug }
-      }}>
+    <div className="bg-white border h-max rounded-lg shadow-xl w-80 m-6 overflow-hidden hover:opacity-90 hover:bg-slate-100">
       <div
         className="h-48 inset-0 overflow-hidden"
         onClick={() => rate(samosa)}
@@ -194,7 +198,7 @@ function SamosaCard({ samosa, addToCart, rate }) {
           </a>
         </div>
       </div>
-    </Link>
+    </div>
 
   );
 }

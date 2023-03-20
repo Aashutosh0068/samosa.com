@@ -3,6 +3,7 @@ import mongoose from "mongoose"
 import { useEffect, useState } from "react";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs"
 import { FaCartPlus } from 'react-icons/fa'
+import { toast } from "react-toastify";
 
 function SamosaSlug({ data, rate, addToCart }) {
 
@@ -27,6 +28,15 @@ function SamosaSlug({ data, rate, addToCart }) {
         }
 
         localStorage.setItem("cartItems", JSON.stringify(cart));
+
+        toast.success((samosa.name + " sucessfully added in your cart").toString(), {
+            autoClose: 5000,
+            position: 'top-right',
+            closeOnClick: false,
+            closeButton: false,
+            hideProgressBar: true,
+            className: "mt-16"
+        })
     };
 
 

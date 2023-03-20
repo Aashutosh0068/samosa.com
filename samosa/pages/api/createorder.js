@@ -1,20 +1,26 @@
 import Order from "@/models/Order";
 import pincodes from "@/values/pincode.json";
 import { getOrderId, setOrderId } from "@/values/setOrderIds";
+import mongoose from "mongoose";
 
 export default async function handler(req, res) {
-  const OrderData = await req.body;
+  const OrderData = req.body;
   const METHOD = await req.method;
 
   if (METHOD == "POST") {
     if (
-      OrderData.email &&
-      OrderData.phone &&
-      OrderData.pincode &&
-      OrderData.fname &&
-      OrderData.address &&
-      OrderData.amount
+      !OrderData.email ||
+      !OrderData.phone ||
+      !OrderData.pincode ||
+      !OrderData.name ||
+      !OrderData.address ||
+      !OrderData.amount ||
+      !OrderData.payment_type
     ) {
+      res
+        .status(500)
+        .json({ message: "Please enter the complete information" });
+    } else {
       if (Object.keys(pincodes).includes(OrderData.pincode)) {
         if (OrderData.products.length === 0) {
           res
@@ -22,14 +28,20 @@ export default async function handler(req, res) {
             .json({ message: "cannot proceed with an empty cart" });
         } else {
           setOrderId((Math.random() * 10000000).toFixed(0));
+
           let orderId = getOrderId();
 
-          console.log(OrderData.products)
+          if (!mongoose.connections[0].readyState) {
+            await mongoose.connect(process.env.MONGO_URI);
+          }
 
           let order = new Order({
             _id: orderId.toString(),
+            name: OrderData.name,
             userEmail: OrderData.email,
             address: OrderData.address,
+            payment: OrderData.payment_type,
+            alt_email: OrderData.alt_email,
             Phone: Number(OrderData.Phone),
             products: OrderData.products,
             amount: OrderData.amount,
@@ -42,23 +54,17 @@ export default async function handler(req, res) {
               .json({ message: "yay! your order has been placed sucessfully" });
           } catch {
             (err) =>
-              res
-                .status(404)
-                .json({
-                  message: "unable to placed your order please try again",
-                });
+              res.status(404).json({
+                message: "unable to placed your order please try again",
+              });
           }
         }
       } else {
-        res.status(800).json({
+        res.status(404).json({
           message:
             "Sorry, we will not able to deliver you samosas, comming soon in your city.",
         });
       }
-    } else {
-      res
-        .status(500)
-        .json({ message: "Please enter the complete information" });
     }
   } else {
     res.status(500).json({ message: "method not allowed" });
