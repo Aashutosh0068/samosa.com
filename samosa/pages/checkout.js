@@ -45,7 +45,6 @@ const Checkout = () => {
   const [Email, setEmail] = useState("");
   const [Phone, setPhone] = useState("");
   const [amount, setAmount] = useState("");
-  const [City, setCity] = useState("")
 
   const handleSubmit = async () => {
     setAmount(cartTotal.toFixed(2));
@@ -129,9 +128,10 @@ const Checkout = () => {
                             id="horizontal-list-radio-id"
                             type="radio"
                             onChange={(e)=>{
-                              const val = e.target.checked.valueOf
+                              const val = e.target.checked
                               if(val == true){
                                  setPayment('cash on delivery')
+                                 window.alert(Payment)
                               }
                             }}
                             name="list-radio"
@@ -211,39 +211,38 @@ const Checkout = () => {
                       className="border rounded h-10 w-full focus:outline-none  focus:border-amber-400 px-5 mt-5 text-md"
                       placeholder="Apartment, suite, etc. (optional)"
                     />
-                    <div className="grid md:grid-cols-3 md:gap-3">
+                    <div className="grid md:flex md:gap-3">
                       <input
                         type="number"
                         maxLength={6}
                         value={Pincode}
-                        onChange={(e) => {
-                          setPincode(e.target.value)
-                          
-                          if(Object.keys(pincode).includes(Pincode.toString())){
-                            const details = pincode[Pincode]
-                            setCity(details.slice(0,1))
-                          }
-                        }}
+                        onChange={(e) => 
+                          setPincode(e.target.value)}
                         minLength={6}
                         oname="mail"
-                        className="border rounded h-10 w-full focus:outline-none  focus:border-amber-400 px-5 mt-5 text-md"
+                        className="border rounded h-10 w-2/3 focus:outline-none  focus:border-amber-400 px-5 mt-5 text-md"
                         placeholder="Zipcode"
                       />
                       <input
                         type="text"
                         name="mail"
-                        className="border rounded h-10 w-full focus:outline-none  focus:border-amber-400 px-5 mt-5 text-md"
+                        className="border rounded h-10 w-3/4 uppercase focus:outline-none  focus:border-amber-400 px-5 mt-5 text-md"
                         readOnly
-                        value={City}
+                        value={Object.keys(pincode).includes(Pincode) ?(
+                          pincode[Pincode].slice(0,1)):("")
+                        }
                         placeholder="City"
                       />
                       <input
                         type="text"
                         name="mail"
-                        className="border rounded h-10 w-full focus:outline-none  focus:border-amber-400 px-5 mt-5 text-md"
+                        className="border rounded h-10 w-full uppercase focus:outline-none  focus:border-amber-400 px-5 mt-5 text-md"
                         readOnly
                         placeholder="State"
-                      />{" "}
+                        value={Object.keys(pincode).includes(Pincode) ?(
+                          pincode[Pincode].slice(1,2)
+                        ):("")}
+                      />
                     </div>
                     <input
                       type="text"
@@ -275,8 +274,10 @@ const Checkout = () => {
                           !address ||
                           !Email.includes("@") ||
                           !Fname ||
+                          !Lname ||
                           Pincode.toString().length != 6 ||
-                          Phone.toString().length != 10
+                          Phone.toString().length != 10 ||
+                          !Payment
                         }
                         className="h-12 w-48 rounded font-medium disabled:bg-blue-300 text-md bg-blue-500 text-white"
                       >

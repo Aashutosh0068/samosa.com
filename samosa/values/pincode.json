@@ -1,5 +1,24 @@
 {
-    "450331": ["burhanpur", "madhya pradesh"],
-    "200102": ["delhi", "delhi"],
-    "380112": ["pune", "maharastra"]
+  "450331": ["burhanpur", "madhya pradesh"],
+  "200102": ["delhi", "delhi"],
+  "380112": ["pune", "maharastra"],
+  "110001": ["New Delhi", "Delhi"],
+  "400001": ["Mumbai", "Maharashtra"],
+  "600001": ["Chennai", "Tamil Nadu"],
+  "700001": ["Kolkata", "West Bengal"],
+  "560001": ["Bangalore", "Karnataka"],
+  "500001": ["Hyderabad", "Telangana"],
+  "380001": ["Ahmedabad", "Gujarat"],
+  "411001": ["Pune", "Maharashtra"],
+  "600017": ["Chennai", "Tamil Nadu"],
+  "201301": ["Noida", "Uttar Pradesh"],
+  "411057": ["Pune", "Maharashtra"],
+  "400057": ["Mumbai", "Maharashtra"],
+  "500032": ["Hyderabad", "Telangana"],
+  "560066": ["Bangalore", "Karnataka"],
+  "110018": ["New Delhi", "Delhi"],
+  "400049": ["Mumbai", "Maharashtra"],
+  "700091": ["Kolkata", "West Bengal"],
+  "600025": ["Chennai", "Tamil Nadu"],
+  "560038": ["Bangalore", "Karnataka"]
 }
