@@ -10,7 +10,6 @@ const OrderSchema = new mongoose.Schema(
     date: { type: Date },
     products: [
       {
-        _id : {required: false},
         name: { type: String, required: true },
         quantity: { type: Number, default: 1 },
         price: { type: Number, required: true },

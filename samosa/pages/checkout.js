@@ -68,6 +68,7 @@ const Checkout = () => {
               return {
                 name: value.name,
                 quantity: value.quantity,
+                price : value.price
               };
             }
           ),
@@ -91,7 +92,7 @@ const Checkout = () => {
 
       else if(statusCode == 500){
         toast.warn(json.message, {
-          autoClose: 5000,
+          autoClose: 2000,
           position: "top-right",
           closeOnClick: false,
           closeButton: false,
@@ -102,7 +103,7 @@ const Checkout = () => {
 
       else{
         toast.error(json.message, {
-          autoClose: 5000,
+          autoClose: 2000,
           position: "top-right",
           closeOnClick: false,
           closeButton: false,
