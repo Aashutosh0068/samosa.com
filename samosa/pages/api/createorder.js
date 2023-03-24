@@ -5,9 +5,9 @@ import mongoose from "mongoose";
 
 export default async function handler(req, res) {
   const OrderData = req.body;
-  const METHOD = await req.method;
+  const METHOD = req.method;
 
-  if (METHOD == "POST") {
+  if (METHOD === "POST") {
     if (
       !OrderData.email ||
       !OrderData.phone ||
