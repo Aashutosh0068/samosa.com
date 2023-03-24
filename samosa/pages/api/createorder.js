@@ -30,20 +30,28 @@ export default async function handler(req, res) {
           setOrderId((Math.random() * 10000000).toFixed(0));
 
           let orderId = getOrderId();
+          const repeatId = Order.findOne({_id : orderId.toString()})
+
+          while(repeatId){
+            setOrderId((Math.random() * 10000000).toFixed(0))
+          }
+
+          let RFOrderId = getOrderId().toString()
 
           if (!mongoose.connections[0].readyState) {
             await mongoose.connect(process.env.MONGO_URI);
           }
 
           let order = new Order({
-            _id: orderId.toString(),
+            _id: RFOrderId,
             name: OrderData.name,
             userEmail: OrderData.email,
             address: OrderData.address,
+            phone: Number(OrderData.phone),
             payment: OrderData.payment_type,
             alt_email: OrderData.alt_email,
-            Phone: Number(OrderData.Phone),
             products: OrderData.products,
+            date: new Date.now().toString(),
             amount: OrderData.amount,
           });
 
@@ -51,7 +59,7 @@ export default async function handler(req, res) {
             order.save();
             res
               .status(200)
-              .json({ message: "yay! your order has been placed sucessfully" });
+              .json({ message: "yay! your order has been placed sucessfully" , orderId : RFOrderId });
           } catch {
             (err) =>
               res.status(404).json({

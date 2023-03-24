@@ -86,6 +86,7 @@ const Checkout = () => {
           hideProgressBar: true,
           className: "mt-16",
         });
+        window.location.replace(`/orders/${json.orderId}`)
       }
 
       else if(statusCode == 500){
