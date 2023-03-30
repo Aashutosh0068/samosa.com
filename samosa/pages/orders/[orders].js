@@ -2,7 +2,6 @@ import Order from "@/models/Order";
 import userState from "@/values/userState";
 import mongoose from "mongoose";
 import React, {useEffect, useState} from "react";
-import { BiTargetLock } from "react-icons/bi";
 
 const orderSummary = ({ order }) => {
 
@@ -21,7 +20,7 @@ const orderSummary = ({ order }) => {
                         <div className="mt-10 flex flex-col xl:flex-row jusitfy-center items-stretch  w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">
                             <div className="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8">
                                 <div className="flex flex-col justify-start items-start bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
-                                    <p className="text-lg md:text-xl w-full pb-10 border-gray-200 border-b first-line:font-semibold leading-6 xl:leading-5 text-gray-800">Customer’s Cart</p>
+                                    <p className="text-lg md:text-xl w-full pb-10 border-gray-200 border-b first-line:font-semibold leading-6 xl:leading-5 text-gray-800">{order.name.split(" ").slice(0,1)}’s Cart</p>
                                     {order.products.map((samosa) => (
                                         <div className="mt-4 md:mt-6 flex  flex-col md:flex-row justify-start items-start md:items-center md:space-x-4 xl:space-x-6 w-full ">
                                             <div className="border-b border-gray-200 md:flex-row flex-col flex justify-between items-start w-full  pb-6 space-y-4 md:space-y-0">
@@ -34,10 +33,12 @@ const orderSummary = ({ order }) => {
                                                 </div>
                                                 <div className="flex justify-between space-x-8 items-start w-full">
                                                     <p className="text-base xl:text-lg leading-6">
-                                                        $36.00 <span className="text-red-400 pl-3 line-through"> $45.00</span>
+                                                        ₹{(samosa.price).toFixed(2)}
                                                     </p>
                                                     <p className="text-base xl:text-lg leading-6 text-gray-800">{samosa.quantity}</p>
-                                                    <p className="text-base xl:text-lg font-semibold leading-6 text-gray-800">$36.00</p>
+                                                    <p className="text-base xl:text-lg font-semibold leading-6 text-gray-800">₹{((samosa.price).toFixed(2) * Number(samosa.quantity)).toFixed(2)}
+                                                    <span className="text-red-400 pl-3 line-through">₹{((samosa.price + 4.9) * samosa.quantity).toFixed(2)}</span>
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>))
@@ -84,7 +85,7 @@ const orderSummary = ({ order }) => {
                                                 <p className="text-base leading-4 text-gray-800">
                                                     Discount <span className="bg-gray-200 p-1 text-xs font-medium leading-3  text-gray-800">SAVINGS</span>
                                                 </p>
-                                                <p className="text-base leading-4 text-gray-600">₹{4.9* Number(order.products.length)}.00 (50%)</p>
+                                                <p className="text-base leading-4 text-gray-600">₹{ order.products.reduce((total, samosa)=> total + 4.9 * samosa.quantity, 0)} (50%)</p>
                                             </div>
                                             <div className="flex justify-between items-center w-full">
                                                 <p className="text-base leading-4 text-gray-800">Shipping</p>
@@ -97,24 +98,24 @@ const orderSummary = ({ order }) => {
                                         </div>
                                     </div>
                                     <div className="flex flex-col justify-center px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6   ">
-                                        <h3 className="text-xl font-semibold leading-5 text-gray-800">Shipping</h3>
+                                        <h3 className="text-xl font-semibold leading-5 text-gray-800">Samosas Status</h3>
                                         <div className="flex justify-between items-start w-full">
                                             <div className="flex justify-center items-center space-x-4">
-                                                <div class="w-8 h-8">
-                                                    <img class="w-full h-full" alt="logo" src="https://i.ibb.co/L8KSdNQ/image-3.png" />
+                                                <div className="w-11 h-11">
+                                                    <img className="w-full h-full" alt="logo" src="https://www.kindpng.com/picc/m/65-650704_clip-art-delivery-man-clipart-delivery-boys-png.png" />
                                                 </div>
                                                 <div className="flex flex-col justify-start items-center">
                                                     <p className="text-lg leading-6 font-semibold text-gray-800">
-                                                        DPD Delivery
+                                                        <span className="text-cyan-500 mb-2">{order.status}</span>
                                                         <br />
-                                                        <span className="font-normal">Delivery with 24 Hours</span>
+                                                        <span className="font-normal">Delivery with in {(Math.random()*34).toFixed(0)} Minutes</span>
                                                     </p>
                                                 </div>
                                             </div>
                                             <p className="text-lg font-semibold leading-6 text-emerald-500">FREE</p>
                                         </div>
                                         <div className="w-full flex justify-center items-center">
-                                            <button className="hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">View Carrier Details</button>
+                                            <button className="hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">View Samosa Delivery Details</button>
                                         </div>
                                     </div>
                                 </div>

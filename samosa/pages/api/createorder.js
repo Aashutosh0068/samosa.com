@@ -30,9 +30,14 @@ export default async function handler(req, res) {
           setOrderId((Math.random() * 10000000).toFixed(0));
 
           let orderId = getOrderId();
+
+          if (!mongoose.connections[0].readyState){
+            await mongoose.connect(process.env.MONGO_URI)
+          }
+
           const repeatId = Order.findOne({_id : orderId.toString()})
 
-          while(repeatId){
+          if(repeatId != null){
             setOrderId((Math.random() * 10000000).toFixed(0))
           }
 
@@ -51,7 +56,7 @@ export default async function handler(req, res) {
             payment: OrderData.payment_type,
             alt_email: OrderData.alt_email,
             products: OrderData.products,
-            date: new Date.now().toString(),
+            date: Date.now().toString(),
             amount: OrderData.amount,
           });
 
