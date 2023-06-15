@@ -11,7 +11,7 @@ const orderSummary = ({ order }) => {
     return (
         <>
             {
-                order.userEmail === email ? (
+                order.alt_email === email ? (
                     <div className="py-14 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
                         <div className="flex justify-start item-start space-y-2 flex-col ">
                             <h1 className="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9  text-gray-800">Order #{order._id}</h1>
@@ -148,7 +148,7 @@ const orderSummary = ({ order }) => {
                                             </div>
                                             <div className="flex justify-center md:justify-start  items-center md:items-start flex-col space-y-4 ">
                                                 <p className="text-base font-semibold leading-4 text-center md:text-left text-gray-800">Billing Address</p>
-                                                <p className="w-48 lg:w-full xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">{order.address}</p>
+                                                <p className="w-48 lg:w-full xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">{order.address}<br/>{order.pincode}</p>
                                             </div>
                                         </div>
                                         <div className="flex w-full justify-center items-center md:justify-start md:items-start">
@@ -161,7 +161,7 @@ const orderSummary = ({ order }) => {
                         </div>
                     </div>
                 ):(
-                    <></>
+                    <>wrong</>
                 )
             }
         </>
@@ -180,7 +180,7 @@ orderSummary.getInitialProps = async (ctx) => {
     let order = await (await Order.findOne({ _id: orderId }))
 
     if(order === null){
-       order = {userEmail : 'abcd'}
+       order = {alt_email : 'abcd'}
     }
 
     return { order : order }
