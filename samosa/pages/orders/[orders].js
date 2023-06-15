@@ -1,6 +1,7 @@
 import Order from "@/models/Order";
 import userState from "@/values/userState";
 import mongoose from "mongoose";
+import { PageNotFoundError } from "next/dist/shared/lib/utils";
 import React, {useEffect, useState} from "react";
 
 const orderSummary = ({ order }) => {
@@ -161,7 +162,7 @@ const orderSummary = ({ order }) => {
                         </div>
                     </div>
                 ):(
-                    <>wrong</>
+                    <>Error Order Not Found</>
                 )
             }
         </>

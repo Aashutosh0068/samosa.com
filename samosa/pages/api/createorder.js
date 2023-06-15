@@ -51,7 +51,7 @@ export default async function handler(req, res) {
             _id: RFOrderId,
             name: OrderData.name,
             userEmail: OrderData.email,
-            pincode: OrderData.pincode,
+            pincode: Number(OrderData.pincode),
             address: OrderData.address,
             phone: Number(OrderData.phone),
             payment: OrderData.payment_type,
