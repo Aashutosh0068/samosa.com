@@ -7,7 +7,7 @@ export default async function handler(req, res){
    }
    const orderId = req.body.order_id
 
-   Order.findOneAndUpdate({_id : orderId},{status : "Cancel"})
+   Order.findOneAndUpdate({_id : orderId},{"status" : "Cancel"})
    res.send("order cancel sucessfully")
    //////------need code-----//////
 }
