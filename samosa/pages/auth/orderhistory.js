@@ -26,7 +26,6 @@ const orderhistory = ({ data }) => {
         </div>
       </div>
       <div class="p-4">
-        <p class="py-2">Items : {order.products.map(samosa =>(<label key={samosa.name}>{samosa.name} x {samosa.quantity}<br/></label>))}</p>
         <a href="#" class="text-blue-500 hover:underline inline-block">View Details</a>
       </div>
     </div>
