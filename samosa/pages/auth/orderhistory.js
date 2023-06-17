@@ -15,18 +15,18 @@ const orderhistory = ({ data }) => {
     {data.map(order =>(
     <div class="bg-white shadow-lg rounded-lg overflow-hidden">
       <div class="relative">
-        <img src="/alt.jpg" alt="Order 1" class="w-full h-auto object-cover object-center"/>
+        <img src="/alt.jpg" alt="Order 1" class="w-full h-full object-cover object-center"/>
         <div class="absolute top-0 right-0 bg-blue-500 text-white px-2 py-1 rounded-bl-lg">
-          <span class="text-xs font-bold">{order.status}</span>
+          <span class="text-md font-bold">{order.status}</span>
         </div>
-        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-gray-900 to-transparent px-4 py-3">
-          <h2 class="text-2xl font-bold text-white mb-2">Order #{order._id}</h2>
-          
+        <div class="absolute bottom-0 mt-28 left-0 w-full px-4 py-3 bg-gradient-to-t from-gray-800 to-transparent">
+          <h2 class="text-2xl font-bold text-white mb-2 mt-24">Order #{order._id}</h2>
+          <p class="py-2 text-white my-2">Items : {order.products.map(samosa =>(<label key={samosa.name}>{samosa.name} x {samosa.quantity}<br/></label>))}</p>
           <p class="text-white font-semibold text-lg">Total: ₹{order.amount}</p>
         </div>
       </div>
       <div class="p-4">
-        <a href="#" class="text-blue-500 hover:underline inline-block">View Details</a>
+        <a href={"/orders/"+order._id} class="text-blue-500 hover:underline inline-block">View Details</a>
       </div>
     </div>
     ))}
