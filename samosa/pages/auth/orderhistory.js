@@ -12,7 +12,6 @@ const orderhistory = ({ data }) => {
     <main class="container mx-auto py-6"/>
   <h1 class="text-3xl font-bold mb-4">Order History</h1>
   
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     {data.map(orders => (   
     <div class="relative bg-white shadow-md rounded-lg overflow-hidden">
       <img src="/alt.jpg" alt="Order 2" class="w-full h-48 object-cover object-center"/>
@@ -21,8 +20,7 @@ const orderhistory = ({ data }) => {
         <i class="fas fa-spinner text-yellow-500 text-2xl ml-2"></i>
       </div>
   </div>))}
-</main>
-
+  </div>
       </>
       ):(<></>)}
     </div>
