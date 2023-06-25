@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import userState from '@/values/userState'
 import React, { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
+import setCookie from '@/values/cookie'
 
 const Login = () => {
 
@@ -59,7 +60,8 @@ const Login = () => {
             }
             else if (statusCode === 200) {
                 const response = await res.json();
-                localStorage.setItem('token', response.token)
+                setCookie('token',response.token,7)
+                //localStorage.setItem('token', response.token)
                 window.location.replace('/auth/userprofile')
                 toast.success('Authentication Sucessfull, enjoy samosas',
                     {

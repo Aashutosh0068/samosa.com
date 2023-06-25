@@ -1,5 +1,6 @@
 import { SECRET_KEY } from '@/Keys';
 import { verify } from 'jsonwebtoken';
+import { getCookie } from './cookie';
 
 export default function userState() {
     const Result = {
@@ -8,7 +9,7 @@ export default function userState() {
         email: undefined,
         name: undefined
     }
-    let token = localStorage.getItem("token")
+    let token = getCookie('token')
 
     if (!token) {
         Result.userStatus = false
