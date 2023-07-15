@@ -3,10 +3,10 @@ import Image from "next/image";
 
 function Banner() {
   return (
-    <div className="relative">
+    <div className="relative bg-white-25">
       
-      <Image src="/alt.jpg" alt="Banner" className="w-full h-auto opacity-80 overflow-hidden object-cover" width="1000" height="1080" />
-      <div className="absolute inset-0 bg-black opacity-50"></div>
+      <Image src="/alt.png" alt="Banner" className="w-full h-auto opacity-1 overflow-hidden object-cover" width="1000" height="1080" />
+      <div className="absolute inset-0"></div>
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-6xl sm:text-5xl text-white font-bold mb-4">Samosa Delivery</h1>

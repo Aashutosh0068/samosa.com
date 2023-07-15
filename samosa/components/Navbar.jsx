@@ -41,32 +41,32 @@ const Navbar = () => {
 
   return (
     <div id='navbar'>
-      <nav className="sticky bg-amber-400 h-54 py-4 px-6 shadow-lg flex justify-between items-center text-white">
+      <nav className="sticky text-amber-400 shadow-sm h-54 py-4 px-6 flex justify-between items-center bg-white">
         <div className="font-bold text-xl">
           <Link href="/">
             Samosa Delivery
           </Link>
         </div>
-        <ul className="flex items-center font-semibold text-lg">
+        <ul className="flex items-center font-medium text-lg">
           <li className="mx-2">
-            <Link href="/menu" className="hover:border-white border pr-2 border-transparent inline-flex rounded p-1 px-1.5 hover:border">
+            <Link href="/menu" className="hover:border-amber-400 border pr-2 border-transparent inline-flex rounded p-1 px-1.5 hover:border">
               <BiFoodMenu className='mt-1.5 mr-1.5 text-xl' />
               <p className="mt-0.5">Menu</p>
             </Link>
           </li>
           <li className='mx-2'>
-            <Link href="/about" className='hover:border-white pr-2 border-transparent inline-flex border rounded p-1 px-1.5 hover:border'>
+            <Link href="/about" className='hover:border-amber-400 pr-2 border-transparent inline-flex border rounded p-1 px-1.5 hover:border'>
               <BsFillPersonFill className='mt-1.5 mr-1.5 text-xl' />
               <p className='mt-0.5'>About</p></Link>
           </li>
           <li className="mx-2">
-            <Link href="/wishlist" className="hover:border-white border border-transparent pr-2 mt-0.5 inline-flex p-1 rounded px-1.5 hover:border">
+            <Link href="/wishlist" className="hover:border-amber-400 border border-transparent pr-2 mt-0.5 inline-flex p-1 rounded px-1.5 hover:border">
               <BsHeartFill className='mr-1.5 mt-1.5 text-lg' />
               Wishlist
             </Link>
           </li>
           <li className="mx-2 text-lg">
-            <Link href="/contact" className="hover:border-white pr-2 border border-amber-400 mt-0.5 rounded inline-flex p-1 px-1.5 hover:border">
+            <Link href="/contact" className="hover:border-amber-400 pr-2 border border-transparent mt-0.5 rounded inline-flex p-1 px-1.5 hover:border">
               <BsFillTelephoneFill className='mr-1.5 mt-1.5 text-lg' />
               Contact Us
             </Link>
@@ -110,7 +110,7 @@ const Navbar = () => {
                   </div>
                 </div>
               ) : (
-                <Link href="/auth/signup" className="border-white -ml-1 mr-4 pr-3 inline-flex border rounded p-1 px-2 hover:bg-white hover:text-amber-400 text-white">
+                <Link href="/auth/signup" className="border-amber-400 -ml-1 mr-4 pr-3 inline-flex border rounded p-1 px-2 hover:bg-amber-400 hover:text-white text-amber-400">
                   <BiLogIn className='mr-1 mt-1 text-xl' />
                   Signup
                 </Link>

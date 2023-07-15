@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body{
-    font-family: ;
+    font-family: Avenir;
 }
 
 #container-snap::-webkit-scrollbar {

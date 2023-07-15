@@ -45,7 +45,7 @@ const orderhistory = ({ data }) => {
 export default orderhistory;
 
 export async function getServerSideProps(context) {
- const {req} = context.headers.cookie
+ console.log(context)
 //  const dynamicValue = HeaderCookie('token',req);
  // const Result = {
  // userEmail : null
@@ -60,9 +60,9 @@ export async function getServerSideProps(context) {
  //   await mongoose.connect(process.env.MONGO_URI);
 //  }
 //  let SamosaOrders = await Order.find({ alt_email: Result.userEmail });
-//  const data = JSON.parse(JSON.stringify(SamosaOrders));
+ const data = JSON.parse(JSON.stringify(""));
 
- // return {
- //   props: { data },
-//  };
+ return {
+  props: { data },
+ };
 }
