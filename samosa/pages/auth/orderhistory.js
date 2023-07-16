@@ -1,5 +1,7 @@
 import { SECRET_KEY } from "@/Keys";
 import Order from "@/models/Order";
+import tokenUserI from "@/values/getEmail";
+import CookieCutter from "@/values/tokenCookieCutter";
 import { verify } from "jsonwebtoken";
 import mongoose from "mongoose";
 import React from "react";
@@ -16,7 +18,7 @@ const orderhistory = ({ data }) => {
               {data.map(order => (
                 <div key={order._id} className="bg-white shadow-lg rounded-lg overflow-hidden">
                   <div className="relative">
-                    <img src="/alt.jpg" alt="Order 1" className="w-full h-full object-cover object-center" />
+                    <img src={order.image} alt="Order 1" className="w-full h-full object-cover object-center" />
                     {order.status == "cancelled" ? (
                       <div className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 rounded-bl-lg">
                         <span className="text-md font-semibold">{order.status}</span>
@@ -45,7 +47,9 @@ const orderhistory = ({ data }) => {
 export default orderhistory;
 
 export async function getServerSideProps(context) {
- console.log(context)
+const {req} = context
+const token = CookieCutter(req.headers.cookie)
+const tokenEmail = tokenUserI(token)
 //  const dynamicValue = HeaderCookie('token',req);
  // const Result = {
  // userEmail : null
@@ -56,11 +60,11 @@ export async function getServerSideProps(context) {
 //    }
  // })
 
- // if (!mongoose.connections[0].readyState) {
- //   await mongoose.connect(process.env.MONGO_URI);
-//  }
-//  let SamosaOrders = await Order.find({ alt_email: Result.userEmail });
- const data = JSON.parse(JSON.stringify(""));
+ if (!mongoose.connections[0].readyState) {
+ await mongoose.connect(process.env.MONGO_URI);
+ }
+let SamosaOrders = await Order.find({ alt_email: tokenEmail });
+ const data = JSON.parse(JSON.stringify(SamosaOrders));
 
  return {
   props: { data },
