@@ -41,7 +41,7 @@ const Navbar = () => {
 
   return (
     <div id='navbar'>
-      <nav className="sticky text-amber-400 shadow-sm h-54 py-4 px-6 flex justify-between items-center bg-white">
+      <nav className="sticky text-amber-400 shadow-xs h-16 py-4 px-6 flex justify-between items-center bg-white">
         <div className="font-bold text-xl">
           <Link href="/">
             Samosa Delivery
@@ -78,7 +78,7 @@ const Navbar = () => {
                   <div>
                     <div className="relative">
                       <button
-                        className="flex peer items-center text-md mt-1 -ml-1 mr-4 text-white transition duration-150 ease-in-out"
+                        className="flex peer items-center text-md mt-1 -ml-1 mr-4 text-amber-400 transition duration-150 ease-in-out"
                         aria-expanded="false">
                         <BiUserCircle className='text-2xl mr-1.5' />{userName.split(' ').slice(0, 1)}
                       </button>

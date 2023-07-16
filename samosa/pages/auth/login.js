@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import userState from '@/values/userState'
 import React, { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
@@ -96,7 +95,7 @@ const Login = () => {
             <div className="flex flex-col rounded-xl items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <div className="w-full bg-white rounded-xl shadow-lg md:mt-0 sm:max-w-md xl:p-0">
                     <div className="p-6 min-h-max rounded-xl space-y-4 md:space-y-6 sm:p-8 opacity-75 border">
-                        <p className="text-2xl font-serif font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+                        <p className="text-2xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                             Sign in in your foodie account
                         </p>
                         <form className="space-y-4 md:space-y-6" onSubmit={e => e.preventDefault() & handleSubmit()}>

@@ -3,9 +3,9 @@ import Image from "next/image";
 
 function Banner() {
   return (
-    <div className="relative bg-white-25">
+    <div className="relative bg-transparent">
       
-      <Image src="/alt.png" alt="Banner" className="w-full h-auto opacity-1 overflow-hidden object-cover" width="1000" height="1080" />
+      <Image src="/alt.png" alt="Banner" className="w-full h-auto opacity-1 object-cover" width="1000" height="1080" />
       <div className="absolute inset-0"></div>
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="text-center">
