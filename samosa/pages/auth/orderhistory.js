@@ -1,8 +1,6 @@
-import { SECRET_KEY } from "@/Keys";
 import Order from "@/models/Order";
 import tokenUserI from "@/values/getEmail";
 import CookieCutter from "@/values/tokenCookieCutter";
-import { verify } from "jsonwebtoken";
 import mongoose from "mongoose";
 import React from "react";
 
@@ -13,12 +11,12 @@ const orderhistory = ({ data }) => {
         <>
           <main className="container mx-auto py-6">
             <h1 className="text-4xl font-bold mb-4 mt-4">Order History</h1>
-
+            
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-10">
               {data.map(order => (
                 <div key={order._id} className="bg-white shadow-lg rounded-lg overflow-hidden">
                   <div className="relative">
-                    <img src={order.image} alt="Order 1" className="w-full h-full object-cover object-center" />
+                    <img src="/alt.png" alt="Order 1" className="w-full h-full object-cover object-center" />
                     {order.status == "cancelled" ? (
                       <div className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 rounded-bl-lg">
                         <span className="text-md font-semibold">{order.status}</span>
@@ -65,7 +63,6 @@ const tokenEmail = tokenUserI(token)
  }
 let SamosaOrders = await Order.find({ alt_email: tokenEmail });
  const data = JSON.parse(JSON.stringify(SamosaOrders));
-
  return {
   props: { data },
  };

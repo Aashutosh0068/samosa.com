@@ -7,6 +7,10 @@ const setCookie = (name, value, days) => {
     document.cookie = name + "=" + value + "; " + expires + "; path=/";
   };
 
+  export function deleteCookie(name) {
+    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  }  
+
   export const getCookie = (name) => {
     const cookieString = document.cookie;
     const cookies = cookieString.split('; ');
